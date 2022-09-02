@@ -25,10 +25,13 @@ class ListOperations {
                 curr_node = curr_node.next;
             }
             curr_node = newNode;
-
+            
         }
         
 
     }
+
+
+
 
 }
