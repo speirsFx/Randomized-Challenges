@@ -1,4 +1,4 @@
-
+package Singly;
 
 class LinkedList {
 
@@ -41,7 +41,9 @@ class LinkedList {
     public  void Display(LinkedList list){
 
         Node currNode = list.head;
-
+        if(currNode == null){
+            return;
+        }
         while(currNode != null){
             System.out.println(currNode.data);
             currNode = currNode.next;
