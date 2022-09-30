@@ -6,7 +6,7 @@ class StackArray {
   int size;
   int st[];
 
-     Stack(int size){
+     StackArray(int size){
     this.size = size;
     st= new int[size];
     this.top = -1;
@@ -14,7 +14,7 @@ class StackArray {
 
   public void push(int x){
 
-    if( top == size - 1){
+    if( top >= size - 1){
       return;
     }
     else {
@@ -25,7 +25,7 @@ class StackArray {
 
   public int pop(){
     int x;
-    if(top == -1){
+    if(top <= -1){
       System.out.println("Stack Underflow");
       return -1;
     }
@@ -40,7 +40,7 @@ class StackArray {
 
   public Boolean isEmpty(){
 
-    if(top == -1){
+    if(top <= -1){
       return true;
     }
     else return false;
@@ -49,7 +49,7 @@ class StackArray {
 
   public Boolean isFull(){
 
-    if(top == size){
+    if(top >= size){
       return true;
     }
    return false;
@@ -57,12 +57,14 @@ class StackArray {
 
   public static void main(String[] args) {
 
-    Stack stack = new Stack(8);
+    StackArray stack = new StackArray(8);
 
-    stack.insert(7);
-    stack.insert(8);
+    stack.push(7);
+    stack.push(8);
+    stack.push(9);
+    stack.push(10);
+    stack.push(11);
 
-    System.out.println(stack.pop());
     System.out.println(stack.pop());
     System.out.println(stack.pop());
     System.out.println(stack.pop());
