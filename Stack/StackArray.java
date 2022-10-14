@@ -6,7 +6,7 @@ class StackArray {
   int size;
   int st[];
 
-     StackArray(int size){
+    StackArray(int size){
     this.size = size;
     st= new int[size];
     this.top = -1;

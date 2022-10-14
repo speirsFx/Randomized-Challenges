@@ -37,10 +37,11 @@ class StackUsingLinkedList {
 
 
 
-    public static void pop(){
+    public static int pop(){
       int x = -1;
       if(top == null){
         System.out.println("Stack Overflow");
+        return -1;
       }
       else {
         Node popped = top;
@@ -48,25 +49,25 @@ class StackUsingLinkedList {
         x = popped.val;
         popped.next = null;
         popped = null;
+
       }
 
-
+      return x;
     }
 
 
 
 
     public static void main(String[] args) {
-      top = new Node();
+
 
       push(5);
       push(51);
-      pop();
 
-      System.out.println("Hello");
 
-      System.out.println(top.val);
-
+      System.out.println(pop());
+      System.out.println(pop());
+      System.out.println(pop());
     }
 
 
