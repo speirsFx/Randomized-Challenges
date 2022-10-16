@@ -60,7 +60,7 @@ class InfixToPostfix {
 
   public static void main(String[] args) {
     String infix = "a+b-c*d/e";
-
+  
    String result = convert(infix);
     System.out.println(result);
   }
