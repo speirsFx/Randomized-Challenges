@@ -1,5 +1,7 @@
 import static java.lang.System.exit;
 
+
+//char stack
 class StackWithList {
 
 
@@ -42,7 +44,7 @@ class StackWithList {
     }
 
 
-    public char peek()
+    public char stackTop()
     {
 
         if (!isEmpty()) {
