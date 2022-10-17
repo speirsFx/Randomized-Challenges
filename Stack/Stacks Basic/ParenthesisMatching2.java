@@ -39,7 +39,7 @@ class ParenthesisMatching2 {
 
     public static void main(String[] args) {
 
-      String s = "{[[a+b]]}+[] + {}+()";
+      String s = "({{{{}}}))";
 
       Boolean check = isBalance2(s);
       System.out.println(check);
