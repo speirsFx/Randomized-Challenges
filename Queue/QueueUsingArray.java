@@ -1,4 +1,4 @@
-class QueueUsingArray {
+public class QueueUsingArray {
 
   static int rear = -1;
   static int front = -1;
@@ -26,10 +26,11 @@ class QueueUsingArray {
     }
 
     static int pop(Queue Q){
-      front++;
+
 
       if(front == rear)
         return -1;
+      front++;
 
       return Q.arr[front];
     }
