@@ -3,8 +3,6 @@ public class QueueUsingArray {
   static int rear = -1;
   static int front = -1;
     static  class Queue{
-       int data;
-       int size;
        int[] arr;
 
 
