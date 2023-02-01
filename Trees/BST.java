@@ -78,7 +78,12 @@ static Node root;
       if(p == null){
         return null;
       }
-
+      if(p.lchild==null && p.rchild==null)
+      {
+        if(p==root)
+          root=null;
+      return null;
+      }
 
       if(p.data > key){
           p.lchild = Delete(p.lchild, key);
@@ -111,11 +116,18 @@ static Node root;
     root = new Node();
     root.data = 10;
 
+
+
     Insert(root, 100);
     Insert(root, 9);
+    Insert(root, 12);
+    System.out.println(root.rchild.lchild.data);
+
+    System.out.println(height(root));
+    Node q = Delete(root,12);
 
     System.out.println(root.rchild.data);
-    System.out.println(root.lchild.data);
+    System.out.println(q.data);
 
   }
 
