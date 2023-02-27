@@ -1,7 +1,7 @@
 public class Node {
     
-    Node lchild;
-    Node rchild;
+    Node left;
+    Node right;
     int height;
     int data;
 
