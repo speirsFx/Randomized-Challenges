@@ -92,7 +92,54 @@ class AVL {
         return plr;
     }
 
-     Node  RInsert(Node p, int key){
+
+    Node RRRotation(Node p){
+        Node pr = p.right;
+        Node prl = pr.left;
+
+
+        p.right = prl;
+        pr.left = p;
+        
+        if(root == p){
+            root = p;
+        }
+
+        p.height = NodeHeight(p);
+        pr.height = NodeHeight(pr);
+        
+        return pr;
+    }
+
+
+
+    Node  RLRotation(Node p){
+
+        Node pr = p.right;
+        Node prl = pr.left;
+
+
+        pr.left = prl.right;
+        p.right = prl.left;
+        prl.left = p;
+        prl.right = pr;
+
+
+        if(root == p){
+            root = prl;
+        }
+
+        p.height = NodeHeight(p);
+        pr.height = NodeHeight(pr);
+        prl.height = NodeHeight(prl);
+
+        return prl;
+
+    }
+
+
+
+     Node RInsert(Node p, int key){
 
         Node t;
 
@@ -122,12 +169,12 @@ class AVL {
            return LRRotation(p);
        }
 
-      // if(balanceFactor(p) == -2 && balanceFactor(p.left) == 1){
-      //     RLRotation(p);
-      // }
-      // if(balanceFactor(p) == -2 && balanceFactor(p.left) == -1){
-      //     RRRotation(p);
-      // }
+       if(balanceFactor(p) == -2 && balanceFactor(p.left) == 1){
+           return RLRotation(p);
+       }
+       if(balanceFactor(p) == -2 && balanceFactor(p.left) == -1){
+           RRRotation(p);
+       }
 
     return p;
 
@@ -154,9 +201,13 @@ class AVL {
          tree.RInsert(tree.root, 1);
          tree.RInsert(tree.root, 0);
 
-         //tree.InOrder(tree.root);
+         tree.RInsert(tree.root, 4);
+         tree.RInsert(tree.root, 13);
+         tree.RInsert(tree.root, 22);
+         tree.RInsert(tree.root, 31);
+         tree.RInsert(tree.root, 40);
 
-         System.out.println(tree.root.left.right.data);
+         tree.InOrder(tree.root);
          
          
 
