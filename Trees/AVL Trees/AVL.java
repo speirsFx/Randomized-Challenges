@@ -102,7 +102,7 @@ class AVL {
         pr.left = p;
         
         if(root == p){
-            root = p;
+            root = pr;
         }
 
         p.height = NodeHeight(p);
@@ -121,6 +121,7 @@ class AVL {
 
         pr.left = prl.right;
         p.right = prl.left;
+        
         prl.left = p;
         prl.right = pr;
 
@@ -129,8 +130,8 @@ class AVL {
             root = prl;
         }
 
-        p.height = NodeHeight(p);
         pr.height = NodeHeight(pr);
+        p.height = NodeHeight(p);
         prl.height = NodeHeight(prl);
 
         return prl;
@@ -149,9 +150,6 @@ class AVL {
             t.data = key;
             t.height = 1;
             t.left = t.right = null;
-            if(root == null){
-                root = t;
-            }
             return t;
         }
         if(key < p.data)
@@ -169,11 +167,11 @@ class AVL {
            return LRRotation(p);
        }
 
-       if(balanceFactor(p) == -2 && balanceFactor(p.left) == 1){
+       if(balanceFactor(p) == -2 && balanceFactor(p.right) == 1){
            return RLRotation(p);
        }
-       if(balanceFactor(p) == -2 && balanceFactor(p.left) == -1){
-           RRRotation(p);
+       if(balanceFactor(p) == -2 && balanceFactor(p.right) == -1){
+           return RRRotation(p);
        }
 
     return p;
@@ -191,23 +189,33 @@ class AVL {
     }
 
 
+    void preOrder(Node node) {
+        if (node != null) {
+            System.out.print(node.data + " ");
+            preOrder(node.left);
+            preOrder(node.right);
+        }
+    }
+
 
     public static void main(String[] args) {
          AVL tree = new AVL();
 
-         tree.RInsert(tree.root, 4);
-         tree.RInsert(tree.root, 3);
-         tree.RInsert(tree.root, 2);
-         tree.RInsert(tree.root, 1);
-         tree.RInsert(tree.root, 0);
+         tree.root = tree.RInsert(tree.root,10);
+         tree.root = tree.RInsert(tree.root,20);
+         tree.root = tree.RInsert(tree.root, 30);
+         tree.root = tree.RInsert(tree.root, 40);
+         tree.root = tree.RInsert(tree.root, 50);
 
-         tree.RInsert(tree.root, 4);
-         tree.RInsert(tree.root, 13);
-         tree.RInsert(tree.root, 22);
-         tree.RInsert(tree.root, 31);
-         tree.RInsert(tree.root, 40);
+         tree.root = tree.RInsert(tree.root, 25);
+        //  tree.root = tree.RInsert(tree.root, 13);
+        //  tree.root = tree.RInsert(tree.root, 22);
+        //  tree.root = tree.RInsert(tree.root, 31);
+        //  tree.root = tree.RInsert(tree.root, 40);
 
-         tree.InOrder(tree.root);
+         tree.preOrder(tree.root);
+
+         System.out.println(tree.root.data);
          
          
 
