@@ -158,7 +158,7 @@ class AVL {
             p.right=RInsert(p.right,key);
 
 
-        p.height = NodeHeight(p);
+            p.height = NodeHeight(p);
 
         if(balanceFactor(p) == 2 && balanceFactor(p.left) == 1){
            return LLRotation(p);
@@ -177,6 +177,101 @@ class AVL {
     return p;
 
     }
+   
+
+
+    Node InPre(Node p){
+
+        while(p != null && p.right != null )
+            p = InPre(p.right);
+        return p;
+    }
+
+
+    Node InSucc(Node p){
+
+        while(p != null && p.left != null )
+            p = InPre(p.left);
+        return p;
+    }
+
+
+    Node Delete( int key, Node p){
+
+        if(p == null){
+            return p;
+        }
+
+        if(p.left ==  null && p.right == null)
+        {
+            if(p == root)
+                root = null;
+            return null;
+        }
+
+        else {
+         if(key > p.data){
+            p.right = Delete( key,p.right);
+        }
+       else if(key < p.data){
+            p.left = Delete(key, p.left);
+        }
+    
+            else {
+
+                if(NodeHeight(p.left) > NodeHeight(p.right)){
+                    Node  q = InPre(p.left);
+                    p.data = q.data;
+                    p.left = Delete(q.data, p.left); 
+                }
+
+                else {
+                    Node  q = InSucc(p.right);
+                    p.data = q.data;
+                    p.right = Delete(q.data, p.right); 
+                }
+
+            }
+        }
+
+        p.height = NodeHeight(p);
+                
+            int bf = balanceFactor(p);
+
+            System.out.println("BF" + bf);
+
+            if(bf == 2 && balanceFactor(p.left)== 1){
+                return LLRotation(p);
+            }
+
+            if(bf == 2 && balanceFactor(p.left) == -1){
+                return LRRotation(p);
+            }
+
+            if(bf == 2 && balanceFactor(p.left) == 0){
+                return LLRotation(p);
+            }
+
+            if(bf == -2 && balanceFactor(p.right)== 1){
+                return RLRotation(p);
+            }
+
+            if(bf == -2 && balanceFactor(p.right) == -1){
+                return RRRotation(p);
+            }
+
+            if(bf == -2 && balanceFactor(p.right) == 0){
+                return RRRotation(p);
+            }
+
+
+            
+
+            return p;
+        
+        }
+
+
 
     void InOrder(Node p){
 
@@ -216,7 +311,14 @@ class AVL {
          tree.preOrder(tree.root);
 
          System.out.println(tree.root.data);
-         
+
+         tree.root = tree.Delete(40, tree.root);
+         tree.root = tree.Delete(50, tree.root);
+
+         tree.preOrder(tree.root);
+
+         System.out.println(tree.balanceFactor(tree.root));
+
          
 
     }
