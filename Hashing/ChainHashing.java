@@ -1,5 +1,4 @@
 
-
 class chainHashing {
 
     static Node arr[] = new Node[10];
