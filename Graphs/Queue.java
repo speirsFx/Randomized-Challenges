@@ -28,4 +28,13 @@ class Queue {
       return data;
     }
   }
+
+  Boolean isEmpty(){
+
+    if(first == null){
+      return true;
+    }
+
+    return false;
+  }
 }
