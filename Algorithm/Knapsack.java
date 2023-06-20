@@ -80,6 +80,6 @@ public static void main(String[] args) {
 
   int[][] li = {{10,2}, {5,3}, {15,5}, {7,7}, {6,1}, {18,4}, {3,1}};
 
-  System.out.println(k.maxProfit(li,7));
+  System.out.println(k.maxProfit(li,23));
 }
 }
