@@ -30,28 +30,36 @@ class DijkstraUsingHeap {
 
 
   void addEdge(int u, int v, int w){
-    adj.get(u).add(new pair(v,u));
+    adj.get(u).add(new pair(v,w));
     adj.get(v).add(new pair(u,w));
   }
 
 
   int[] dijkstra(int src, int V){
-    PriorityQueue<pair> pq = new PriorityQueue<>(V, Comparator.comparingInt(o -> o.node));
+    PriorityQueue<pair> pq = new PriorityQueue<>(V, Comparator.comparingInt(o -> o.distance));
     int[] dist = new int[V];
     Arrays.fill(dist, Integer.MAX_VALUE);
 
-    pq.add(new pair(0, src));
+    pq.add(new pair(src, 0));
     dist[src] = 0;
 
-    while (!pq.isEmpty()) {
-        int u = pq.poll().distance;
+    while(pq.size() != 0) {
+           int dis = pq.peek().distance;
+           int node = pq.peek().node;
 
-        for (pair v : adj.get(u)) {
-            if (dist[v.node] > dist[u] + v.distance) {
-                dist[v.node] = dist[u] + v.distance;
-                pq.add(new pair(dist[v.node], v.node));
-            }
-        }
+           pq.remove();
+
+
+           for(int i = 0; i < adj.get(node).size(); i++) {
+               int edgeWeight = adj.get(node).get(i).distance;
+               int adjNode = adj.get(node).get(i).node;
+
+
+               if(dis + edgeWeight < dist[adjNode]) {
+                   dist[adjNode] = dis + edgeWeight;
+                   pq.add(new pair(adjNode, dist[adjNode]));
+               }
+           }
       }
 
         return dist;
